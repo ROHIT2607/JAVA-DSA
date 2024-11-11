@@ -101,8 +101,39 @@ public class ArrayBasics {
         return -1;
     }
 
+    public static void triplet(int arr[]) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                for (int k = j + 1; k < arr.length; k++) {
+                    int newArr[] = new int[3];
+                    if ((arr[i] + arr[j] + arr[k] == 0) && (arr[i] != arr[j])
+                            && (arr[j] != arr[k] && (arr[i] != arr[k]))) {
+                        newArr[0] = arr[i];
+                        newArr[1] = arr[j];
+                        newArr[2] = arr[k];
+                        PrintArray(newArr);
+                    }
+                }
+            }
+        }
+    }
+
+    public static int buyAndSellStocks(int arr[]) {
+        int buyPrice = arr[0];
+        int profit = 0;
+
+        for (int i = 1; i < arr.length; i++) {
+            int sellPrice = arr[i];
+            int currProfit = sellPrice - buyPrice;
+            profit = Math.max(profit, currProfit);
+            buyPrice = Math.min(buyPrice, sellPrice);
+        }
+
+        return profit;
+    }
+
     public static void main(String args[]) {
-        int arr[] = { 4, 5, 6, 7, 0, 1, 2 };
+        int arr[] = { 7, 1, 5, 3, 6, 4 };
         // PrintArray(arr);
         // ReverseArray(arr);
         // PrintArray(arr);
@@ -110,6 +141,8 @@ public class ArrayBasics {
 
         // System.out.println(trappedRainWater(arr));
         // System.out.println(findRepeated(arr));
-        System.out.println(searchInRoatetedSortedArray(arr, 0));
+        // System.out.println(searchInRoatetedSortedArray(arr, 0));
+        // triplet(arr);
+        System.out.println(buyAndSellStocks(arr));
     }
 }
