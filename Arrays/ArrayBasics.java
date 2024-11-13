@@ -132,8 +132,105 @@ public class ArrayBasics {
         return profit;
     }
 
+    public static void spiralMatrix(int arr[][]) {
+        int startRow = 0;
+        int startCol = 0;
+        int endRow = arr.length - 1;
+        int endCol = arr[0].length - 1;
+
+        // System.out.println(endRow);
+        // System.out.println(endCol);
+
+        while (startRow <= endRow && startCol <= endCol) {
+
+            // Top
+            for (int j = startCol; j <= endCol; j++) {
+                System.out.print(arr[startRow][j] + " ");
+            }
+
+            // Right
+            for (int i = startRow + 1; i <= endRow; i++) {
+                System.out.print(arr[i][endCol] + " ");
+            }
+
+            // Bottom
+            for (int j = endCol - 1; j >= startCol; j--) {
+                System.out.print(arr[endRow][j] + " ");
+            }
+
+            // Left
+            for (int i = endRow - 1; i >= startRow + 1; i--) {
+                System.out.print(arr[i][startCol] + " ");
+            }
+
+            // System.out.println();
+
+            startRow++;
+            startCol++;
+            endCol--;
+            endRow--;
+
+        }
+    }
+
+    public static boolean staireCaseSearch(int arr[][], int target) {
+        int row = arr.length - 1;
+        int col = 0;
+
+        while (col < arr[0].length && row >= 0) {
+            if (arr[row][col] == target) {
+                return true;
+            }
+
+            else if (arr[row][col] < target) {
+                col++;
+            } else {
+                row--;
+            }
+        }
+
+        return false;
+    }
+
+    public static int countElements(int arr[][], int target) {
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                if (arr[i][j] == target) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    public static int sumOf2ndRow(int arr[][]) {
+        int sum = 0;
+        for (int j = 0; j < arr[0].length; j++) {
+            sum += arr[2][j];
+        }
+        return sum;
+    }
+
+    public static void transposeMatrix(int matrix[][]) {
+        int newArr[][] = new int[matrix[0].length][matrix.length];
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                newArr[j][i] = matrix[i][j];
+            }
+        }
+
+        for (int i = 0; i < newArr.length; i++) {
+            for (int j = 0; j < newArr[0].length; j++) {
+                System.out.print(newArr[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String args[]) {
-        int arr[] = { 7, 1, 5, 3, 6, 4 };
+        // int arr[] = { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
+        int arr[][] = { { 1, 2, 3, 4 }, { 5, 6, 7, 8 } };
         // PrintArray(arr);
         // ReverseArray(arr);
         // PrintArray(arr);
@@ -143,6 +240,11 @@ public class ArrayBasics {
         // System.out.println(findRepeated(arr));
         // System.out.println(searchInRoatetedSortedArray(arr, 0));
         // triplet(arr);
-        System.out.println(buyAndSellStocks(arr));
+        // System.out.println(buyAndSellStocks(arr));
+        // spiralMatrix(arr);
+        // System.out.println(staireCaseSearch(arr, 333));
+        // System.out.println(countElements(arr, 45));
+        // System.out.println(sumOf2ndRow(arr));
+        transposeMatrix(arr);
     }
 }
